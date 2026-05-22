@@ -1,6 +1,15 @@
 const express = require("express");
 const http = require("http");
 const app = express();
+
+// --- DODANY KOD (Health Check) ---
+// Ta linijka sprawia, że wejście na adres w przeglądarce
+// lub przez UptimeRobot zwróci tekst i status 200 OK.
+app.get("/", (req, res) => {
+    res.status(200).send("Serwer GuessWho działa poprawnie!");
+});
+// ---------------------------------
+
 const server = http.createServer(app);
 
 const io = require("socket.io")(server, {
